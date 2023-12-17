@@ -93,7 +93,7 @@ class AlienInvasion:
             self.sb.prep_level()
             self.sb.prep_ships()
 
-            # Get rid of any remaining aliesn and bullets.
+            # Get rid of any remaining aliens and bullets.
             self.aliens.empty()
             self.bullets.empty()
 
@@ -124,7 +124,7 @@ class AlienInvasion:
 
     def _check_bullet_alien_collisions(self):
         """Respond to bullet-alien collisions."""
-        # Remove any bullets & aliens that have collieded.
+        # Remove any bullets & aliens that have collided.
         collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
 
         if collisions:
@@ -159,13 +159,13 @@ class AlienInvasion:
         # Create the full fleet of aliens
         for row_number in range(number_rows):
             for alien_number in range(number_aliens_x):
-                # Create an alien and place it in the row)
+                # Create an alien and place it in the row
                 self._create_alien(alien_number, row_number)
 
     def _create_alien(self, alien_number, row_number):
-        """Create an anlien and place it in the row"""
+        """Create an alien and place it in the row"""
         alien = Alien(self)
-        alien_width, alien_height = alien.rect.size
+        alien_width, _ = alien.rect.size
         alien.x = alien_width + 2 * alien_width * alien_number
         alien.rect.x = alien.x
         alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
@@ -185,7 +185,7 @@ class AlienInvasion:
 
     def _check_fleet_edges(self):
         """Respond appropriately if any aliens have reached the edge."""
-        for  alien in self.aliens.sprites():
+        for alien in self.aliens.sprites():
             if alien.check_edges():
                 self._change_fleet_direction()
                 break
